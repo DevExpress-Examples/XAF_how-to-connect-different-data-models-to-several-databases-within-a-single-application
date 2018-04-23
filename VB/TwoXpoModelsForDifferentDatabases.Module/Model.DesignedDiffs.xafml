@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="TwoXpoModelsForDifferentDatabases" Logo="ExpressAppLogo">
+  <NavigationItems>
+    <Items>
+      <Item Id="Default" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@8a0631f0-ba50-4b4d-88b4-e87643665aec" ViewId="PersistentClass1_ListView" IsNewNode="True" />
+          <Item Id="@8fc7789f-e144-4237-b199-256902541c59" ViewId="PersistentClass2_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="13.1.7.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>
