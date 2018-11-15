@@ -1,3 +1,13 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [ModuleInfo1.cs](./CS/ClassLibrary1/ModuleInfo1.cs) (VB: [ModuleInfo1.vb](./VB/ClassLibrary1/ModuleInfo1.vb))
+* [PersistentClass1.cs](./CS/ClassLibrary1/PersistentClass1.cs) (VB: [PersistentClass1.vb](./VB/ClassLibrary1/PersistentClass1.vb))
+* **[XafModule1.cs](./CS/ClassLibrary1/XafModule1.cs) (VB: [XafModule1.vb](./VB/ClassLibrary1/XafModule1.vb))**
+* [ModuleInfo2.cs](./CS/ClassLibrary2/ModuleInfo2.cs) (VB: [ModuleInfo2.vb](./VB/ClassLibrary2/ModuleInfo2.vb))
+* [PersistentClass2.cs](./CS/ClassLibrary2/PersistentClass2.cs) (VB: [PersistentClass2.vb](./VB/ClassLibrary2/PersistentClass2.vb))
+* [XafModule2.cs](./CS/ClassLibrary2/XafModule2.cs) (VB: [XafModule2.vb](./VB/ClassLibrary2/XafModule2.vb))
+<!-- default file list end -->
 # How to connect different XPO data models to several databases within a single application
 
 
