@@ -26,6 +26,7 @@ Namespace ClassLibrary1
 				objectSpaceProvider1 = New XPObjectSpaceProvider(New ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings("ConnectionStringDatabase1").ConnectionString), application_Renamed.TypesInfo, typeInfoSource1, True)
 			End If
 			e.ObjectSpaceProviders.Add(objectSpaceProvider1)
+			e.IsObjectSpaceProviderOwner = False
 		End Sub
 		Public Overrides Function GetModuleUpdaters(ByVal objectSpace As IObjectSpace, ByVal versionFromDB As Version) As IEnumerable(Of ModuleUpdater)
 			Dim updater As New XafModuleUpdater1(objectSpace, versionFromDB)

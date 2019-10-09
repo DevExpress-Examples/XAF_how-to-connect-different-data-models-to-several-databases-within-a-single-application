@@ -29,6 +29,7 @@ namespace ClassLibrary2 {
                 );
             }
             e.ObjectSpaceProviders.Add(objectSpaceProvider2);
+            e.IsObjectSpaceProviderOwner = false;
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
             XafModuleUpdater2 updater = new XafModuleUpdater2(objectSpace, versionFromDB);
