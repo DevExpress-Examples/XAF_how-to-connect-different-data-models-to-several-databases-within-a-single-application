@@ -8,7 +8,7 @@ Imports DevExpress.Persistent.Base
 Imports DevExpress.Persistent.BaseImpl
 Imports DevExpress.ExpressApp.Security
 Imports DevExpress.ExpressApp.Web
-Imports DevExpress.Web.ASPxClasses
+Imports DevExpress.Web
 
 Namespace TwoXpoModelsForDifferentDatabases.Web
 	Public Class [Global]
