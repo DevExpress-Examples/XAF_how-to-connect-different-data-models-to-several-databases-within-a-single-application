@@ -11,19 +11,23 @@ Imports DevExpress.ExpressApp.Xpo
 Namespace ClassLibrary2
 	Public Class XafModule2
 		Inherits ModuleBase
-
+		Private Shared ReadOnly lockObj As Object = New Object()
 		' Here we will have a single instance, which is initialized only once during the application life cycle.
-		Private Shared objectSpaceProvider2 As XPObjectSpaceProvider = Nothing
+		Private Shared typeInfoSource2 As XpoTypeInfoSource = Nothing
 		Public Overrides Sub Setup(ByVal application As XafApplication)
 			MyBase.Setup(application)
 			AddHandler application.CreateCustomObjectSpaceProvider, AddressOf application_CreateCustomObjectSpaceProvider
 		End Sub
 		Private Sub application_CreateCustomObjectSpaceProvider(ByVal sender As Object, ByVal e As CreateCustomObjectSpaceProviderEventArgs)
 			Dim application_Renamed As XafApplication = DirectCast(sender, XafApplication)
-			If objectSpaceProvider2 Is Nothing Then
-				Dim typeInfoSource2 As New XpoTypeInfoSource(DirectCast(application_Renamed.TypesInfo, TypesInfo), GetType(PersistentClass2), GetType(ModuleInfo2))
-				objectSpaceProvider2 = New XPObjectSpaceProvider(New ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings("ConnectionStringDatabase2").ConnectionString), application_Renamed.TypesInfo, typeInfoSource2, True)
+			If typeInfoSource2 Is Nothing Then
+				SyncLock lockObj
+					If typeInfoSource2 Is Nothing Then
+						typeInfoSource2 As New XpoTypeInfoSource(DirectCast(application_Renamed.TypesInfo, TypesInfo), GetType(PersistentClass2), GetType(ModuleInfo2))
+					End If
+				End SyncLock
 			End If
+			Dim objectSpaceProvider2 As XPObjectSpaceProvider = New XPObjectSpaceProvider(New ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings("ConnectionStringDatabase2").ConnectionString), application_Renamed.TypesInfo, typeInfoSource2, True)
 			e.ObjectSpaceProviders.Add(objectSpaceProvider2)
 			e.IsObjectSpaceProviderOwner = False
 		End Sub

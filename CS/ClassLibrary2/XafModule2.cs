@@ -10,24 +10,29 @@ using DevExpress.ExpressApp.Xpo;
 
 namespace ClassLibrary2 {
     public class XafModule2 : ModuleBase {
+        private static readonly object lockObj = new object();
         // Here we will have a single instance, which is initialized only once during the application life cycle.
-        private static XPObjectSpaceProvider objectSpaceProvider2 = null;
+        private static XpoTypeInfoSource typeInfoSource2 = null;
         public override void Setup(XafApplication application) {
             base.Setup(application);
             application.CreateCustomObjectSpaceProvider += application_CreateCustomObjectSpaceProvider;
         }
         void application_CreateCustomObjectSpaceProvider(object sender, CreateCustomObjectSpaceProviderEventArgs e) {
             XafApplication application = (XafApplication)sender;
-            if (objectSpaceProvider2 == null) {
-                XpoTypeInfoSource typeInfoSource2 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
-                    typeof(PersistentClass2), typeof(ModuleInfo2)
-                );
-                objectSpaceProvider2 = new XPObjectSpaceProvider(
+            if (typeInfoSource2 == null) {
+                lock(lockObj) {
+                    if(typeInfoSource2 == null) {
+                        typeInfoSource2 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
+                            typeof(PersistentClass2), typeof(ModuleInfo2)
+                        );
+                    }
+                }
+            }
+            XPObjectSpaceProvider objectSpaceProvider2 = new XPObjectSpaceProvider(
                     new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabase2"].ConnectionString),
                     application.TypesInfo,
                     typeInfoSource2, true
                 );
-            }
             e.ObjectSpaceProviders.Add(objectSpaceProvider2);
             e.IsObjectSpaceProviderOwner = false;
         }
