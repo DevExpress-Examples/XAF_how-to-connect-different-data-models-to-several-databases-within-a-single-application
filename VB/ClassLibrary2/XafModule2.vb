@@ -23,7 +23,7 @@ Namespace ClassLibrary2
 			If typeInfoSource2 Is Nothing Then
 				SyncLock lockObj
 					If typeInfoSource2 Is Nothing Then
-						typeInfoSource2 As New XpoTypeInfoSource(DirectCast(application_Renamed.TypesInfo, TypesInfo), GetType(PersistentClass2), GetType(ModuleInfo2))
+						typeInfoSource2 = New XpoTypeInfoSource(DirectCast(application_Renamed.TypesInfo, TypesInfo), GetType(PersistentClass2), GetType(ModuleInfo2))
 					End If
 				End SyncLock
 			End If
