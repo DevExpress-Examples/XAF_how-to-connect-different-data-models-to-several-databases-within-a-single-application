@@ -10,8 +10,9 @@ using DevExpress.ExpressApp.Xpo;
 
 namespace ClassLibrary1 {
     public class XafModule1 : ModuleBase {
+        private static readonly object lockObj = new object();
         // Here we will have a single instance, which is initialized only once during the application life cycle.
-        private static XPObjectSpaceProvider objectSpaceProvider1 = null;
+        private static XpoTypeInfoSource typeInfoSource1 = null;
 
         public override void Setup(XafApplication application) {
             base.Setup(application);
@@ -19,16 +20,20 @@ namespace ClassLibrary1 {
         }
         void application_CreateCustomObjectSpaceProvider(object sender, CreateCustomObjectSpaceProviderEventArgs e) {
             XafApplication application = (XafApplication)sender;
-            if (objectSpaceProvider1 == null) {
-                XpoTypeInfoSource typeInfoSource1 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
-                    typeof(PersistentClass1), typeof(ModuleInfo1)
-                );
-                objectSpaceProvider1 = new XPObjectSpaceProvider(
-                    new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabase1"].ConnectionString),
-                    application.TypesInfo,
-                    typeInfoSource1, true
-                );
+            if (typeInfoSource1 == null) {
+                lock(lockObj) {
+                    if(typeInfoSource1 == null) {
+                        typeInfoSource1 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
+                            typeof(PersistentClass1), typeof(ModuleInfo1)
+                        );
+                    }
+                }
             }
+            XPObjectSpaceProvider objectSpaceProvider1 = new XPObjectSpaceProvider(
+                new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabase1"].ConnectionString),
+                application.TypesInfo,
+                typeInfoSource1, true
+            );
             e.ObjectSpaceProviders.Add(objectSpaceProvider1);
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
