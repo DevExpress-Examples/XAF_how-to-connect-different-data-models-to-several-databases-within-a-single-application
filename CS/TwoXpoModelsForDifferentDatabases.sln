@@ -1,5 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoXpoModelsForDifferentDatabases.Win", "TwoXpoModelsForDifferentDatabases.Win\TwoXpoModelsForDifferentDatabases.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{1B5022FB-00A5-4D63-923E-CBC3BDD7DBD0}"
@@ -7,6 +9,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{126C9637-0B42-482F-9153-D99E67D3EFD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoXpoModelsForDifferentDatabases.Web", "TwoXpoModelsForDifferentDatabases.Web\TwoXpoModelsForDifferentDatabases.Web.csproj", "{82A6DBC9-B1B4-44E4-9718-55DF930CD349}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonModule", "CommonModule\CommonModule.csproj", "{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +43,17 @@ Global
 		{82A6DBC9-B1B4-44E4-9718-55DF930CD349}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
 		{82A6DBC9-B1B4-44E4-9718-55DF930CD349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A6DBC9-B1B4-44E4-9718-55DF930CD349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.EasyTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.EasyTest|Any CPU.Build.0 = Debug|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103A782B-AE3C-43C6-990E-C41A8F0C5FEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {920D49F6-1D48-49EB-97FB-FF6E602F8D3A}
 	EndGlobalSection
 EndGlobal

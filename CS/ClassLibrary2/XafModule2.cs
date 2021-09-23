@@ -23,7 +23,7 @@ namespace ClassLibrary2 {
                 lock(lockObj) {
                     if(typeInfoSource2 == null) {
                         typeInfoSource2 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
-                            typeof(PersistentClass2), typeof(ModuleInfo2)
+                            typeof(PersistentClass2)
                         );
                     }
                 }
@@ -33,6 +33,7 @@ namespace ClassLibrary2 {
                     application.TypesInfo,
                     typeInfoSource2, true
                 );
+            objectSpaceProvider2.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
             e.ObjectSpaceProviders.Add(objectSpaceProvider2);
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
@@ -45,8 +46,7 @@ namespace ClassLibrary2 {
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
             // Check whether it is a valid ObjectSpace to create objects of a certain type.
-            if (ObjectSpace.Database.Contains("2")) {
-            //if (ObjectSpace.CanInstantiate(typeof(PersistentClass2))) {
+            if (ObjectSpace.CanInstantiate(typeof(PersistentClass2))) {
                 string str = "test2";
                 PersistentClass2 theObject = ObjectSpace.FindObject<PersistentClass2>(CriteriaOperator.Parse("PersistentProperty2 = ?", str));
                 if (theObject == null) {

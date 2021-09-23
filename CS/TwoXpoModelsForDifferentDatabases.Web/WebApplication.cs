@@ -13,6 +13,10 @@ namespace TwoXpoModelsForDifferentDatabases.Web {
         private DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule module2;
         private ClassLibrary1.XafModule1 xafModule11;
         private ClassLibrary2.XafModule2 xafModule21;
+        private CommonModule.Module commonModule;
+        private DevExpress.ExpressApp.Security.SecurityModule securityModule1;
+        private DevExpress.ExpressApp.Security.SecurityStrategyComplex securityStrategyComplex1;
+        private DevExpress.ExpressApp.Security.AuthenticationStandard authenticationStandard1;
 
         public TwoXpoModelsForDifferentDatabasesAspNetApplication() {
             InitializeComponent();
@@ -50,7 +54,31 @@ namespace TwoXpoModelsForDifferentDatabases.Web {
             this.module2 = new DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule();
             this.xafModule11 = new ClassLibrary1.XafModule1();
             this.xafModule21 = new ClassLibrary2.XafModule2();
+            this.commonModule = new CommonModule.Module();
+            this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
+            this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
+            this.securityStrategyComplex1.SupportNavigationPermissionsForTypes = false;
+            this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // securityStrategyComplex1
+            // 
+            this.securityStrategyComplex1.Authentication = this.authenticationStandard1;
+            this.securityStrategyComplex1.RoleType = typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole);
+            // ApplicationUser descends from PermissionPolicyUser and supports OAuth authentication. For more information, refer to the following help topic: https://docs.devexpress.com/eXpressAppFramework/402197
+            // If your application uses PermissionPolicyUser or a custom user type, set the UserType property as follows:
+            this.securityStrategyComplex1.UserType = typeof(CommonModule.BusinessObjects.ApplicationUser);
+            // 
+            // securityModule1
+            // 
+            this.securityModule1.UserType = typeof(CommonModule.BusinessObjects.ApplicationUser);
+            // 
+            // authenticationStandard1
+            // 
+            this.authenticationStandard1.LogonParametersType = typeof(DevExpress.ExpressApp.Security.AuthenticationStandardLogonParameters);
+            // ApplicationUserLoginInfo is only necessary for applications that use the ApplicationUser user type.
+            // Comment out the following line if using PermissionPolicyUser or a custom user type.
+            this.authenticationStandard1.UserLoginInfoType = typeof(CommonModule.BusinessObjects.ApplicationUserLoginInfo);
             // 
             // TwoXpoModelsForDifferentDatabasesAspNetApplication
             // 
@@ -59,6 +87,9 @@ namespace TwoXpoModelsForDifferentDatabases.Web {
             this.Modules.Add(this.module2);
             this.Modules.Add(this.xafModule11);
             this.Modules.Add(this.xafModule21);
+            this.Modules.Add(this.commonModule);
+            this.Modules.Add(this.securityModule1);
+            this.Security = this.securityStrategyComplex1;
             this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.TwoXpoModelsForDifferentDatabasesAspNetApplication_DatabaseVersionMismatch);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

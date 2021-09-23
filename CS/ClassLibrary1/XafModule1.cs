@@ -34,6 +34,7 @@ namespace ClassLibrary1 {
                     application.TypesInfo,
                     typeInfoSource1, true
                 );
+            objectSpaceProvider1.CheckCompatibilityType = CheckCompatibilityType.ModuleInfo;
             e.ObjectSpaceProviders.Add(objectSpaceProvider1);
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
@@ -46,8 +47,7 @@ namespace ClassLibrary1 {
         public override void UpdateDatabaseAfterUpdateSchema() {
             base.UpdateDatabaseAfterUpdateSchema();
             // Check whether it is a valid ObjectSpace to create objects of a certain type.
-            if (ObjectSpace.Database.Contains("1")) {
-            //if (ObjectSpace.CanInstantiate(typeof(PersistentClass1))) {
+            if (ObjectSpace.CanInstantiate(typeof(PersistentClass1))) {
                 string str = "test1";
                 PersistentClass1 theObject = ObjectSpace.FindObject<PersistentClass1>(CriteriaOperator.Parse("PersistentProperty1 = ?", str));
                 if (theObject == null) {

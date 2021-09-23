@@ -14,6 +14,7 @@ namespace TwoXpoModelsForDifferentDatabases.Win {
         /// </summary>
         [STAThread]
         static void Main() {
+            DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.v20_1;
 #if EASYTEST
 			DevExpress.ExpressApp.Win.EasyTest.EasyTestRemotingRegistration.Register();
 #endif
@@ -25,13 +26,18 @@ namespace TwoXpoModelsForDifferentDatabases.Win {
             // Refer to the http://documentation.devexpress.com/#Xaf/CustomDocument2680 help article for more details on how to provide a custom splash form.
             //winApplication.SplashScreen = new DevExpress.ExpressApp.Win.Utils.DXSplashScreen("YourSplashImage.png");
 #if EASYTEST
-			if(ConfigurationManager.ConnectionStrings["EasyTestConnectionString"] != null) {
-				winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
-			}
+			//if(ConfigurationManager.ConnectionStrings["EasyTestConnectionString"] != null) {
+			//	winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
+			//}
 #endif
-            if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
-                winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
+            //    winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //}
+#if DEBUG
+            if(System.Diagnostics.Debugger.IsAttached) {
+                winApplication.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
+#endif
             try {
                 winApplication.Setup();
                 winApplication.Start();
