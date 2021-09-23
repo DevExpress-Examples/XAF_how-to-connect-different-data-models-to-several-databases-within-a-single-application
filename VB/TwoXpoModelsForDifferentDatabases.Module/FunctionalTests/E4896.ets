@@ -1,5 +1,0 @@
-;#DropDB TwoXpoModelsForDifferentDatabasesEasyTest
-
-#Application TwoXpoModelsForDifferentDatabases.Win
-
-*AutoTest
