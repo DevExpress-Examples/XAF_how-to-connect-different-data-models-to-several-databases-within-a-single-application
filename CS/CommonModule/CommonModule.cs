@@ -29,6 +29,7 @@ namespace CommonModule {
         public override void Setup(XafApplication application) {
             base.Setup(application);
             application.CreateCustomObjectSpaceProvider += application_CreateCustomObjectSpaceProvider;
+            (application.Security as SecurityStrategy)?.RegisterXPOAdapterProviders(new SecurityPermissionsProviderDefault(application));
             application.ObjectSpaceCreated += Application_ObjectSpaceCreated;
         }
         private void Application_ObjectSpaceCreated(object sender, ObjectSpaceCreatedEventArgs e) {
@@ -54,8 +55,7 @@ namespace CommonModule {
                     }
                 }
             }
-            IObjectSpaceProvider objectSpaceProvider = new SecuredObjectSpaceProvider(
-                (SecurityStrategyComplex)application.Security,
+            IObjectSpaceProvider objectSpaceProvider = new XPObjectSpaceProvider(
                     new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabaseCommon"].ConnectionString),
                     application.TypesInfo,
                     typeInfoSource, true
@@ -63,7 +63,6 @@ namespace CommonModule {
             objectSpaceProvider.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
             e.ObjectSpaceProviders.Add(objectSpaceProvider);
             e.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(application.TypesInfo, null));
-            ((SecurityStrategyComplex)application.Security).RegisterXPOAdapterProviders(new SecurityPermissionsProviderDefault(application));
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
             ModuleUpdater updater = new CommonModule.DatabaseUpdate.Updater(objectSpace, versionFromDB);
