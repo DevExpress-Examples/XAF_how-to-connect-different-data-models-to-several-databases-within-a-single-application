@@ -24,13 +24,13 @@ namespace TwoXpoModelsForDifferentDatabases.Web {
         }
         protected void Session_Start(Object sender, EventArgs e) {
             WebApplication.SetInstance(Session, new TwoXpoModelsForDifferentDatabasesAspNetApplication());
-            if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
-                WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            }
+            //if (ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
+            //    WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //}
 #if EASYTEST
-            if(ConfigurationManager.ConnectionStrings["EasyTestConnectionString"] != null) {
-                WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
-            }
+            //if(ConfigurationManager.ConnectionStrings["EasyTestConnectionString"] != null) {
+            //    WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
+            //}
 #endif
             WebApplication.Instance.Setup();
             WebApplication.Instance.Start();

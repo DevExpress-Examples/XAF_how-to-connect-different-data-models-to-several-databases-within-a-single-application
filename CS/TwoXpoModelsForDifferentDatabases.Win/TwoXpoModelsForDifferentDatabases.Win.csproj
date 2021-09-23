@@ -116,6 +116,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v21.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Xpo.v21.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
@@ -159,6 +163,12 @@
     <Reference Include="DevExpress.XtraVerticalGrid.v21.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v21.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v21.2">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -236,6 +246,10 @@
     <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj">
       <Project>{126C9637-0B42-482F-9153-D99E67D3EFD5}</Project>
       <Name>ClassLibrary2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonModule\CommonModule.csproj">
+      <Project>{103a782b-ae3c-43c6-990e-c41a8f0c5feb}</Project>
+      <Name>CommonModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

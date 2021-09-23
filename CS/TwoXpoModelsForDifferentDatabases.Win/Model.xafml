@@ -4,4 +4,5 @@
     <SchemaModule Name="SystemModule" Version="13.2.9.0" IsNewNode="True" />
     <SchemaModule Name="SystemWindowsFormsModule" Version="13.2.9.0" IsNewNode="True" />
   </SchemaModules>
+  <Options UIType="TabbedMDI" FormStyle="Ribbon" />
 </Application>
