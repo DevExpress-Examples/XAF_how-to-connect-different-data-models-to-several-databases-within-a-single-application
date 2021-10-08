@@ -85,6 +85,11 @@ namespace CommonModule.DatabaseUpdate {
                 defaultRole.AddTypePermissionsRecursively<ModelDifferenceAspect>(SecurityOperations.ReadWriteAccess, SecurityPermissionState.Allow);
                 defaultRole.AddTypePermissionsRecursively<ModelDifference>(SecurityOperations.Create, SecurityPermissionState.Allow);
                 defaultRole.AddTypePermissionsRecursively<ModelDifferenceAspect>(SecurityOperations.Create, SecurityPermissionState.Allow);
+
+                defaultRole.AddTypePermission(ObjectSpace.TypesInfo.FindTypeInfo("ClassLibrary1.PersistentClass1").Type, "Create;Read;Write", SecurityPermissionState.Allow);
+                defaultRole.AddNavigationPermission(@"Application/NavigationItems/Items/Default/Items/PersistentClass1_ListView", SecurityPermissionState.Allow);
+                defaultRole.AddTypePermission(ObjectSpace.TypesInfo.FindTypeInfo("ClassLibrary2.PersistentClass2").Type, SecurityOperations.Read, SecurityPermissionState.Allow);
+                defaultRole.AddNavigationPermission(@"Application/NavigationItems/Items/Default/Items/PersistentClass2_ListView", SecurityPermissionState.Allow);
             }
             return defaultRole;
         }
