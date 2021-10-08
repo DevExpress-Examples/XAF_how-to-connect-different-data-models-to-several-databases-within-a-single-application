@@ -5,6 +5,8 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.DC.Xpo;
+using DevExpress.ExpressApp.Security;
+using DevExpress.ExpressApp.Security.ClientServer;
 using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Xpo;
 
@@ -28,11 +30,13 @@ namespace ClassLibrary2 {
                     }
                 }
             }
-            XPObjectSpaceProvider objectSpaceProvider2 = new XPObjectSpaceProvider(
-                    new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabase2"].ConnectionString),
-                    application.TypesInfo,
-                    typeInfoSource2, true
-                );
+            //XPObjectSpaceProvider objectSpaceProvider2 = new XPObjectSpaceProvider(
+            IObjectSpaceProvider objectSpaceProvider2 = new SecuredObjectSpaceProvider(
+                (SecurityStrategyComplex)application.Security,
+                new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabase2"].ConnectionString),
+                application.TypesInfo,
+                typeInfoSource2, true
+            );
             objectSpaceProvider2.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
             e.ObjectSpaceProviders.Add(objectSpaceProvider2);
         }

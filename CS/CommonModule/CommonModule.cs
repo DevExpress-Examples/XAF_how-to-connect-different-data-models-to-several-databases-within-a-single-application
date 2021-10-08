@@ -55,11 +55,13 @@ namespace CommonModule {
                     }
                 }
             }
-            IObjectSpaceProvider objectSpaceProvider = new XPObjectSpaceProvider(
-                    new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabaseCommon"].ConnectionString),
-                    application.TypesInfo,
-                    typeInfoSource, true
-                );
+            //IObjectSpaceProvider objectSpaceProvider = new XPObjectSpaceProvider(
+            IObjectSpaceProvider objectSpaceProvider = new SecuredObjectSpaceProvider(
+                (SecurityStrategyComplex)application.Security,
+                new ConnectionStringDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringDatabaseCommon"].ConnectionString),
+                application.TypesInfo,
+                typeInfoSource, true
+            );
             objectSpaceProvider.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
             e.ObjectSpaceProviders.Add(objectSpaceProvider);
             e.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(application.TypesInfo, null));
