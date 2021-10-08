@@ -53,10 +53,11 @@ namespace ClassLibrary1 {
             // Check whether it is a valid ObjectSpace to create objects of a certain type.
             if (ObjectSpace.CanInstantiate(typeof(PersistentClass1))) {
                 string str = "test1";
-                PersistentClass1 theObject = ObjectSpace.FindObject<PersistentClass1>(CriteriaOperator.Parse("PersistentProperty1 = ?", str));
+                PersistentClass1 theObject = ObjectSpace.FindObject<PersistentClass1>(CriteriaOperator.Parse("PersistentProperty1A = ?", str));
                 if (theObject == null) {
                     theObject = ObjectSpace.CreateObject<PersistentClass1>();
-                    theObject.PersistentProperty1 = str;
+                    theObject.PersistentProperty1A = str;
+                    theObject.PersistentProperty1B = str;
                 }
             }
         }
