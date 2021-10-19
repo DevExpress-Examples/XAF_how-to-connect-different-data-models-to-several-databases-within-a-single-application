@@ -25,9 +25,7 @@ Namespace TwoXpoModelsForDifferentDatabases.Web
 ''' 
 ''' Input:
 '''             ASPxWebControl.CallbackError += new System.EventHandler(this.Application_Error)
-'''  #If EASYTEST
-            DevExpress.ExpressApp.Web.TestScripts.TestScriptsManager.EasyTestEnabled = true;
-#End If
+
 End Sub
 
         Protected Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
