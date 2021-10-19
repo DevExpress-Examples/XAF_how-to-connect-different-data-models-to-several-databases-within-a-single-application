@@ -23,7 +23,7 @@ Namespace CommonModule.BusinessObjects
 
         <Indexed("ProviderUserKey", Unique:=True)>
         <Appearance("PasswordProvider", Enabled:=False, Criteria:="!(IsNewObject(this)) and LoginProviderName == '" & SecurityDefaults.PasswordAuthentication & "'", Context:="DetailView")>
-        Public Property LoginProviderName As String
+        Public Property LoginProviderName As String Implements ISecurityUserLoginInfo.LoginProviderName
             Get
                 Return loginProviderNameField
             End Get
@@ -34,7 +34,7 @@ Namespace CommonModule.BusinessObjects
         End Property
 
         <Appearance("PasswordProviderUserKey", Enabled:=False, Criteria:="!(IsNewObject(this)) and LoginProviderName == '" & SecurityDefaults.PasswordAuthentication & "'", Context:="DetailView")>
-        Public Property ProviderUserKey As String
+        Public Property ProviderUserKey As String Implements ISecurityUserLoginInfo.ProviderUserKey
             Get
                 Return providerUserKeyField
             End Get
@@ -45,7 +45,7 @@ Namespace CommonModule.BusinessObjects
         End Property
 
         <Association("User-LoginInfo")>
-        Public Property User As ApplicationUser
+        Public Property MyUser As ApplicationUser
             Get
                 Return userField
             End Get
@@ -55,9 +55,9 @@ Namespace CommonModule.BusinessObjects
             End Set
         End Property
 
-        Private ReadOnly Property User As Object
+        Private ReadOnly Property User As Object  Implements ISecurityUserLoginInfo.User    
             Get
-                Return Me.User
+                Return Me.MyUser
             End Get
         End Property
     End Class

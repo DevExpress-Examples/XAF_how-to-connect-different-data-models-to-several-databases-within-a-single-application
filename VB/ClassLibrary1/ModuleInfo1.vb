@@ -19,13 +19,13 @@ Namespace ClassLibrary1
         <Key(True)>
         Public Property ID As Integer
 
-        Public Property Version As String
+        Public Property Version As String Implements IModuleInfo.Version
 
-        Public Property Name As String
+        Public Property Name As String Implements IModuleInfo.Name
 
-        Public Property AssemblyFileName As String
+        Public Property AssemblyFileName As String Implements IModuleInfo.AssemblyFileName
 
-        Public Property IsMain As Boolean
+        Public Property IsMain As Boolean Implements IModuleInfo.IsMain
 
         Public Overrides Function ToString() As String
             Return If(Not String.IsNullOrEmpty(Name), Name, MyBase.ToString())
