@@ -242,15 +242,15 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.vbproj">
       <Project>{1B5022FB-00A5-4D63-923E-CBC3BDD7DBD0}</Project>
       <Name>ClassLibrary1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.csproj">
+    <ProjectReference Include="..\ClassLibrary2\ClassLibrary2.vbproj">
       <Project>{126C9637-0B42-482F-9153-D99E67D3EFD5}</Project>
       <Name>ClassLibrary2</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CommonModule\CommonModule.csproj">
+    <ProjectReference Include="..\CommonModule\CommonModule.vbproj">
       <Project>{103a782b-ae3c-43c6-990e-c41a8f0c5feb}</Project>
       <Name>CommonModule</Name>
     </ProjectReference>
