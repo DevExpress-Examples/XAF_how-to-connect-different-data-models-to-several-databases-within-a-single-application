@@ -31,9 +31,9 @@ Namespace CommonModule
 
         Public Overrides Sub Setup(ByVal application As XafApplication)
             MyBase.Setup(application)
-            application.CreateCustomObjectSpaceProvider += AddressOf application_CreateCustomObjectSpaceProvider
+          AddHandler  application.CreateCustomObjectSpaceProvider, AddressOf application_CreateCustomObjectSpaceProvider
             TryCast(application.Security, SecurityStrategy)?.RegisterXPOAdapterProviders(New SecurityPermissionsProviderDefault(application))
-            application.ObjectSpaceCreated += AddressOf Application_ObjectSpaceCreated
+           AddHandler application.ObjectSpaceCreated , AddressOf Application_ObjectSpaceCreated
         End Sub
 
         Private Sub Application_ObjectSpaceCreated(ByVal sender As Object, ByVal e As ObjectSpaceCreatedEventArgs)

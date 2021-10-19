@@ -22,7 +22,7 @@ Namespace ClassLibrary1
 
         Public Overrides Sub Setup(ByVal application As XafApplication)
             MyBase.Setup(application)
-            application.CreateCustomObjectSpaceProvider += AddressOf application_CreateCustomObjectSpaceProvider
+           AddHandler  application.CreateCustomObjectSpaceProvider, AddressOf application_CreateCustomObjectSpaceProvider
         End Sub
 
         Private Sub application_CreateCustomObjectSpaceProvider(ByVal sender As Object, ByVal e As CreateCustomObjectSpaceProviderEventArgs)
