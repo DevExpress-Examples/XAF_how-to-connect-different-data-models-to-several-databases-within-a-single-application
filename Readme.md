@@ -11,6 +11,10 @@
 This example demonstrates how to create custom XAF modules with custom business objects and logic that would work with separate databases. These modules do not depend on each other and thus can be reused in other applications as a whole.  
 Usually, the connection to the database is set up in the executable [application project](http://documentation.devexpress.com/#Xaf/CustomDocument2569). Typically, it is performed in the configuration file or directly in the code of the application's designer or within the Main function/Global application class. To learn more, please check out this help topic: [Connect an XAF Application to a Database Provider](http://documentation.devexpress.com/#Xaf/CustomDocument3155) In this example, you will learn how to establish a connection to the database directly from your module projects.
 
+## Note
+Please refer to a Web API Service example for v22.1+: [T1122851 - Creating and consuming multiple XPObjectSpaceProviders in Web API Service](https://supportcenter.devexpress.com/internal/ticket/details/T1122851).
+
+
 ## Steps to implement
 
 **1.** Add two new custom XAF modules into a new XAF solution using the XAF Solution Wizard [as  described here](https://docs.devexpress.com/eXpressAppFramework/118046/application-shell-and-base-infrastructure/application-solution-components/modules).
