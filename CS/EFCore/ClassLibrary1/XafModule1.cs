@@ -8,10 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using DevExpress.ExpressApp.ApplicationBuilder.Internal;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
-using DevExpress.ExpressApp.DC;
-using DevExpress.ExpressApp.Security;
-using DevExpress.ExpressApp.EFCore;
-using DevExpress.EntityFrameworkCore.Security;
 
 namespace ClassLibrary1 {
     public class XafModule1 : ModuleBase {
@@ -46,6 +42,7 @@ namespace ClassLibrary1 {
             options.UseSqlServer(connectionString);
             options.UseChangeTrackingProxies();
             options.UseObjectSpaceLinkProxies();
+            options.UseLazyLoadingProxies();
         }
     }
     public class XafModuleUpdater1 : ModuleUpdater {

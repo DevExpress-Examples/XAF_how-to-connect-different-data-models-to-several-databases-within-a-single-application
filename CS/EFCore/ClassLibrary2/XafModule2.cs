@@ -42,6 +42,7 @@ namespace ClassLibrary2 {
             options.UseSqlServer(connectionString);
             options.UseChangeTrackingProxies();
             options.UseObjectSpaceLinkProxies();
+            options.UseLazyLoadingProxies();
         }
     }
     public class XafModuleUpdater2 : ModuleUpdater {
