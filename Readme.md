@@ -6,6 +6,9 @@
 
 # How to connect different XPO data models to several databases within a single application
 
+> **Note**  
+> The description of this example is currently under construction and may not match the code in the example. We are currently working to provide you with up-to-date content.
+
 ## Scenario
 
 This example demonstrates how to create custom XAF modules with custom business objects and logic that would work with separate databases. These modules do not depend on each other and thus can be reused in other applications as a whole.  
