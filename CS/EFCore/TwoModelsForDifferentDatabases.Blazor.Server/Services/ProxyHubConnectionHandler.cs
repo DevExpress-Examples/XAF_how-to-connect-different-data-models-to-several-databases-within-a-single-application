@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Options;
 
-namespace TwoXpoModelsForDifferentDatabases.Blazor.Server.Services;
+namespace TwoModelsForDifferentDatabases.Blazor.Server.Services;
 
 internal class ProxyHubConnectionHandler<THub> : HubConnectionHandler<THub> where THub : Hub {
     private readonly IValueManagerStorageContainerInitializer storageContainerInitializer;

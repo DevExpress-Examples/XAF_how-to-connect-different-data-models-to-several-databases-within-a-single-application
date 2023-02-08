@@ -1,4 +1,4 @@
-﻿namespace TwoXpoModelsForDifferentDatabases.Win {
+﻿namespace TwoModelsForDifferentDatabases.Win {
     partial class XafSplashScreen
     {
         /// <summary>

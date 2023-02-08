@@ -7,19 +7,19 @@ using Microsoft.EntityFrameworkCore;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 using DevExpress.ExpressApp.Design;
 
-namespace TwoXpoModelsForDifferentDatabases.Win;
+namespace TwoModelsForDifferentDatabases.Win;
 
 public class ApplicationBuilder : IDesignTimeApplicationFactory {
     public static WinApplication BuildApplication(string connectionString) {
         var builder = WinApplication.CreateBuilder();
-        builder.UseApplication<TwoXpoModelsForDifferentDatabasesWindowsFormsApplication>();
+        builder.UseApplication<TwoModelsForDifferentDatabasesWindowsFormsApplication>();
         builder.Modules
             .AddConditionalAppearance()
             .AddValidation(options => {
                 options.AllowValidationDetailsAccess = false;
             })
             .Add<CommonModule.CommonModule>()
-        	.Add<TwoXpoModelsForDifferentDatabasesWinModule>()
+        	.Add<TwoModelsForDifferentDatabasesWinModule>()
             .Add<ClassLibrary1.XafModule1>()
             .Add<ClassLibrary2.XafModule2>();
         CommonModule.CommonModule.SetupObjectSpace(builder.ObjectSpaceProviders);

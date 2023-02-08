@@ -10,21 +10,20 @@ using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using DevExpress.Persistent.BaseImpl.EF;
 
-namespace TwoXpoModelsForDifferentDatabases.Win;
+namespace TwoModelsForDifferentDatabases.Blazor.Server;
 
-[ToolboxItemFilter("Xaf.Platform.Win")]
+[ToolboxItemFilter("Xaf.Platform.Blazor")]
 // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.
-public sealed class TwoXpoModelsForDifferentDatabasesWinModule : ModuleBase {
+public sealed class TwoModelsForDifferentDatabasesBlazorModule : ModuleBase {
     //private void Application_CreateCustomModelDifferenceStore(object sender, CreateCustomModelDifferenceStoreEventArgs e) {
-    //    e.Store = new ModelDifferenceDbStore((XafApplication)sender, typeof(ModelDifference), true, "Win");
+    //    e.Store = new ModelDifferenceDbStore((XafApplication)sender, typeof(ModelDifference), true, "Blazor");
     //    e.Handled = true;
     //}
     private void Application_CreateCustomUserModelDifferenceStore(object sender, CreateCustomModelDifferenceStoreEventArgs e) {
-        e.Store = new ModelDifferenceDbStore((XafApplication)sender, typeof(ModelDifference), false, "Win");
+        e.Store = new ModelDifferenceDbStore((XafApplication)sender, typeof(ModelDifference), false, "Blazor");
         e.Handled = true;
     }
-    public TwoXpoModelsForDifferentDatabasesWinModule() {
-        DevExpress.ExpressApp.Editors.FormattingProvider.UseMaskSettings = true;
+    public TwoModelsForDifferentDatabasesBlazorModule() {
     }
     public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
         return ModuleUpdater.EmptyModuleUpdaters;

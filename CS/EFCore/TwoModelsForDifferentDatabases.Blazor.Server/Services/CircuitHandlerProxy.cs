@@ -1,7 +1,7 @@
 ﻿using DevExpress.ExpressApp.Blazor.Services;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 
-namespace TwoXpoModelsForDifferentDatabases.Blazor.Server.Services;
+namespace TwoModelsForDifferentDatabases.Blazor.Server.Services;
 
 internal class CircuitHandlerProxy : CircuitHandler {
     private readonly IScopedCircuitHandler scopedCircuitHandler;

@@ -14,7 +14,7 @@ using DevExpress.ExpressApp.Utils;
 using DevExpress.ExpressApp.Win.Utils;
 using System.Reflection;
 
-namespace TwoXpoModelsForDifferentDatabases.Win;
+namespace TwoModelsForDifferentDatabases.Win;
 
 static class Program {
     private static bool ContainsArgument(string[] args, string argument) {

@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using DevExpress.ExpressApp.EFCore;
 using DevExpress.EntityFrameworkCore.Security;
 
-namespace TwoXpoModelsForDifferentDatabases.Blazor.Server;
+namespace TwoModelsForDifferentDatabases.Blazor.Server;
 
-public class TwoXpoModelsForDifferentDatabasesBlazorApplication : BlazorApplication {
-    public TwoXpoModelsForDifferentDatabasesBlazorApplication() {
-        ApplicationName = "TwoXpoModelsForDifferentDatabases";
+public class TwoModelsForDifferentDatabasesBlazorApplication : BlazorApplication {
+    public TwoModelsForDifferentDatabasesBlazorApplication() {
+        ApplicationName = "TwoModelsForDifferentDatabases";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-        DatabaseVersionMismatch += TwoXpoModelsForDifferentDatabasesBlazorApplication_DatabaseVersionMismatch;
+        DatabaseVersionMismatch += TwoModelsForDifferentDatabasesBlazorApplication_DatabaseVersionMismatch;
     }
     protected override void OnSetupStarted() {
         base.OnSetupStarted();
@@ -25,7 +25,7 @@ public class TwoXpoModelsForDifferentDatabasesBlazorApplication : BlazorApplicat
         }
 #endif
     }
-    private void TwoXpoModelsForDifferentDatabasesBlazorApplication_DatabaseVersionMismatch(object sender, DatabaseVersionMismatchEventArgs e) {
+    private void TwoModelsForDifferentDatabasesBlazorApplication_DatabaseVersionMismatch(object sender, DatabaseVersionMismatchEventArgs e) {
 #if EASYTEST
         e.Updater.Update();
         e.Handled = true;

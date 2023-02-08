@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonModule", "CommonModule\CommonModule.csproj", "{E5F54344-7F9B-4EFC-8C63-7B75AA956D60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoXpoModelsForDifferentDatabases.Win", "TwoXpoModelsForDifferentDatabases.Win\TwoXpoModelsForDifferentDatabases.Win.csproj", "{353B0E79-50E1-4F93-801B-E5C2B963D1BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoModelsForDifferentDatabases.Win", "TwoModelsForDifferentDatabases.Win\TwoModelsForDifferentDatabases.Win.csproj", "{353B0E79-50E1-4F93-801B-E5C2B963D1BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoXpoModelsForDifferentDatabases.Blazor.Server", "TwoXpoModelsForDifferentDatabases.Blazor.Server\TwoXpoModelsForDifferentDatabases.Blazor.Server.csproj", "{88AF6603-8B87-4ACB-9553-858CF1BFAD90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoModelsForDifferentDatabases.Blazor.Server", "TwoModelsForDifferentDatabases.Blazor.Server\TwoModelsForDifferentDatabases.Blazor.Server.csproj", "{88AF6603-8B87-4ACB-9553-858CF1BFAD90}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{92B40FDD-23A8-41E9-A7EA-B6C0CC62C323}"
 EndProject

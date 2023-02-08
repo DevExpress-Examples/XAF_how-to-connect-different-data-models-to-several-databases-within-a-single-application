@@ -6,11 +6,11 @@ using DevExpress.Persistent.Base;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.EntityFrameworkCore;
-using TwoXpoModelsForDifferentDatabases.Blazor.Server.Services;
+using TwoModelsForDifferentDatabases.Blazor.Server.Services;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 using DevExpress.ExpressApp.Core;
 
-namespace TwoXpoModelsForDifferentDatabases.Blazor.Server;
+namespace TwoModelsForDifferentDatabases.Blazor.Server;
 
 public class Startup {
     public Startup(IConfiguration configuration) {
@@ -29,14 +29,14 @@ public class Startup {
         services.AddHttpContextAccessor();
         services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
         services.AddXaf(Configuration, builder => {
-            builder.UseApplication<TwoXpoModelsForDifferentDatabasesBlazorApplication>();
+            builder.UseApplication<TwoModelsForDifferentDatabasesBlazorApplication>();
             builder.Modules
                 .AddConditionalAppearance()
                 .AddValidation(options => {
                     options.AllowValidationDetailsAccess = false;
                 })
                 .Add<CommonModule.CommonModule>()
-            	.Add<TwoXpoModelsForDifferentDatabasesBlazorModule>()
+            	.Add<TwoModelsForDifferentDatabasesBlazorModule>()
                 .Add<ClassLibrary1.XafModule1>()
                 .Add<ClassLibrary2.XafModule2>();
             CommonModule.CommonModule.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);

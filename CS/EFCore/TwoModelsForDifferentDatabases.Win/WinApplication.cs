@@ -12,25 +12,25 @@ using DevExpress.EntityFrameworkCore.Security;
 using CommonModule.BusinessObjects;
 using System.Data.Common;
 
-namespace TwoXpoModelsForDifferentDatabases.Win;
+namespace TwoModelsForDifferentDatabases.Win;
 
 // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members
-public class TwoXpoModelsForDifferentDatabasesWindowsFormsApplication : WinApplication {
-    public TwoXpoModelsForDifferentDatabasesWindowsFormsApplication() {
+public class TwoModelsForDifferentDatabasesWindowsFormsApplication : WinApplication {
+    public TwoModelsForDifferentDatabasesWindowsFormsApplication() {
 		SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
-        ApplicationName = "TwoXpoModelsForDifferentDatabases";
+        ApplicationName = "TwoModelsForDifferentDatabases";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
         UseOldTemplates = false;
-        DatabaseVersionMismatch += TwoXpoModelsForDifferentDatabasesWindowsFormsApplication_DatabaseVersionMismatch;
-        CustomizeLanguagesList += TwoXpoModelsForDifferentDatabasesWindowsFormsApplication_CustomizeLanguagesList;
+        DatabaseVersionMismatch += TwoModelsForDifferentDatabasesWindowsFormsApplication_DatabaseVersionMismatch;
+        CustomizeLanguagesList += TwoModelsForDifferentDatabasesWindowsFormsApplication_CustomizeLanguagesList;
     }
-    private void TwoXpoModelsForDifferentDatabasesWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e) {
+    private void TwoModelsForDifferentDatabasesWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e) {
         string userLanguageName = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
         if(userLanguageName != "en-US" && e.Languages.IndexOf(userLanguageName) == -1) {
             e.Languages.Add(userLanguageName);
         }
     }
-    private void TwoXpoModelsForDifferentDatabasesWindowsFormsApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e) {
+    private void TwoModelsForDifferentDatabasesWindowsFormsApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e) {
 #if EASYTEST
         e.Updater.Update();
         e.Handled = true;

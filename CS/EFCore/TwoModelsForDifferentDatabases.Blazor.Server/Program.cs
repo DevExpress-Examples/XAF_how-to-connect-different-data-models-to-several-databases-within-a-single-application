@@ -5,7 +5,7 @@ using DevExpress.ExpressApp.Blazor.Services;
 using DevExpress.ExpressApp.Design;
 using DevExpress.ExpressApp.Utils;
 
-namespace TwoXpoModelsForDifferentDatabases.Blazor.Server;
+namespace TwoModelsForDifferentDatabases.Blazor.Server;
 
 public class Program : IDesignTimeApplicationFactory {
     private static bool ContainsArgument(string[] args, string argument) {
