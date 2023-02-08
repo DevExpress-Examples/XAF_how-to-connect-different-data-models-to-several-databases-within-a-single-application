@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# How to connect different XPO data models to several databases within a single application
+# How to connect different data models to several databases within a single application
 
 > **Note**  
 > The description of this example is currently under construction and may not match the code in the example. We are currently working to provide you with up-to-date content.
