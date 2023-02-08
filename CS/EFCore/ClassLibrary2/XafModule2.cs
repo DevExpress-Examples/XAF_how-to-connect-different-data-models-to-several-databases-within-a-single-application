@@ -57,6 +57,7 @@ namespace ClassLibrary2 {
                     theObject = ObjectSpace.CreateObject<PersistentClass2>();
                     theObject.PersistentPropertyX = str;
                 }
+                ObjectSpace.CommitChanges();
             }
         }
     }

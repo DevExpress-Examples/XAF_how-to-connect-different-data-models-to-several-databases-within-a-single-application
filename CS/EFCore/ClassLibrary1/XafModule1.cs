@@ -58,6 +58,7 @@ namespace ClassLibrary1 {
                     theObject.PersistentProperty1A = str;
                     theObject.PersistentProperty1B = str;
                 }
+                ObjectSpace.CommitChanges();
             }
         }
     }
