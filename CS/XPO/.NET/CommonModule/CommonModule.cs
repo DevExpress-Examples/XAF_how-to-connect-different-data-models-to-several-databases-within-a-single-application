@@ -9,6 +9,9 @@ using DevExpress.ExpressApp.Security.ClientServer;
 using DevExpress.ExpressApp.Security;
 using CommonModule.BusinessObjects;
 using DevExpress.ExpressApp.Security.Adapters;
+using DevExpress.ExpressApp.ApplicationBuilder;
+using Microsoft.Extensions.DependencyInjection;
+using DevExpress.ExpressApp.ApplicationBuilder.Internal;
 
 namespace CommonModule;
 
@@ -24,11 +27,6 @@ public sealed class CommonModule : ModuleBase {
     private static readonly object lockObj = new object();
     // Here we will have a single instance, which is initialized only once during the application life cycle.
     private static XpoTypeInfoSource typeInfoSource;
-    private readonly IConfiguration configuration;
-
-    public CommonModule(IConfiguration configuration) : this() {
-        this.configuration = configuration;
-    }
 
     public CommonModule() {
 		// 
@@ -50,21 +48,14 @@ public sealed class CommonModule : ModuleBase {
     }
     public override void Setup(XafApplication application) {
         base.Setup(application);
-        application.CreateCustomObjectSpaceProvider += application_CreateCustomObjectSpaceProvider;
         (application.Security as SecurityStrategy)?.RegisterXPOAdapterProviders(new SecurityPermissionsProviderDefault(application));
-        application.ObjectSpaceCreated += Application_ObjectSpaceCreated;
     }
 
-    private void Application_ObjectSpaceCreated(object sender, ObjectSpaceCreatedEventArgs e) {
-        (e.ObjectSpace as CompositeObjectSpace)?.PopulateAdditionalObjectSpaces((XafApplication)sender);
-    }
-
-    void application_CreateCustomObjectSpaceProvider(object sender, CreateCustomObjectSpaceProviderEventArgs e) {
-        XafApplication application = (XafApplication)sender;
+    static void InitTypeInfoSource(ITypesInfo typesInfo) {
         if (typeInfoSource == null) {
             lock (lockObj) {
                 if (typeInfoSource == null) {
-                    typeInfoSource = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
+                    typeInfoSource = new XpoTypeInfoSource((TypesInfo)typesInfo,
                         typeof(DevExpress.Persistent.BaseImpl.ModelDifference),
                         typeof(DevExpress.Persistent.BaseImpl.ModelDifferenceAspect),
                         typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser),
@@ -79,17 +70,35 @@ public sealed class CommonModule : ModuleBase {
                 }
             }
         }
-        string connectionString = configuration != null
-            ? configuration.GetConnectionString(ConnectionStringName)
-            : ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
-        IObjectSpaceProvider objectSpaceProvider1 = new SecuredObjectSpaceProvider(
-            (SecurityStrategyComplex)application.Security,
+    }
+
+    public static void SetupObjectSpace<TContext>(IObjectSpaceProviderServiceBasedBuilder<TContext> builder, IConfiguration configuration)
+        where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
+        builder.Add(delegate (IServiceProvider serviceProvider) {
+            string connectionString = configuration.GetConnectionString(ConnectionStringName);
+            ISelectDataSecurityProvider selectDataSecurityProvider = (ISelectDataSecurityProvider)serviceProvider.GetRequiredService<ISecurityStrategyBase>();
+            ITypesInfo typesInfo = serviceProvider.GetRequiredService<ITypesInfo>();
+            return CreateObjectSpaceProvider(selectDataSecurityProvider, typesInfo, connectionString);
+        });
+    }
+
+    public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> builder) where TContext : IXafApplicationBuilder<TContext> {
+        builder.Add(delegate (XafApplication application, CreateCustomObjectSpaceProviderEventArgs _) {
+            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+            return CreateObjectSpaceProvider((ISelectDataSecurityProvider)application.Security, application.TypesInfo, connectionString);
+        });
+    }
+
+    static IObjectSpaceProvider CreateObjectSpaceProvider(ISelectDataSecurityProvider selectDataSecurityProvider, ITypesInfo typesInfo, string connectionString) {
+        InitTypeInfoSource(typesInfo);
+        var objectSpaceProvider = new SecuredObjectSpaceProvider(
+            selectDataSecurityProvider,
             new ConnectionStringDataStoreProvider(connectionString),
-            application.TypesInfo,
-            typeInfoSource, true
+            typesInfo,
+            typeInfoSource,
+            true
         );
-        objectSpaceProvider1.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
-        e.ObjectSpaceProviders.Add(objectSpaceProvider1);
-        e.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(application.TypesInfo, null));
+        objectSpaceProvider.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
+        return objectSpaceProvider;
     }
 }

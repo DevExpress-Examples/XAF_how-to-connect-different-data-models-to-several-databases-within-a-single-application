@@ -25,6 +25,10 @@ public class ApplicationBuilder : IDesignTimeApplicationFactory {
             .Add<ClassLibrary1.XafModule1>()
             .Add<ClassLibrary2.XafModule2>()
             .Add<TwoXpoModelsForDifferentDatabasesWinModule>();
+        builder.ObjectSpaceProviders.AddNonPersistent();
+        CommonModule.CommonModule.SetupObjectSpace(builder.ObjectSpaceProviders);
+        ClassLibrary1.XafModule1.SetupObjectSpace(builder.ObjectSpaceProviders);
+        ClassLibrary2.XafModule2.SetupObjectSpace(builder.ObjectSpaceProviders);
         builder.Security
             .UseIntegratedMode(options => {
                 options.RoleType = typeof(PermissionPolicyRole);

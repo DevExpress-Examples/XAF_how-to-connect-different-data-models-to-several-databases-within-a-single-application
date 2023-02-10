@@ -8,6 +8,9 @@ using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp.DC.Xpo;
 using DevExpress.ExpressApp.Security.ClientServer;
 using DevExpress.ExpressApp.Security;
+using DevExpress.ExpressApp.ApplicationBuilder.Internal;
+using DevExpress.ExpressApp.ApplicationBuilder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ClassLibrary1;
 
@@ -23,45 +26,52 @@ public sealed class XafModule1 : ModuleBase {
     private static readonly object lockObj = new object();
     // Here we will have a single instance, which is initialized only once during the application life cycle.
     private static XpoTypeInfoSource typeInfoSource1;
-    private readonly IConfiguration configuration;
-
-    public XafModule1(IConfiguration configuration) : this() {
-        this.configuration = configuration;
-    }
-
-    public XafModule1() { }
 
     public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {
         ModuleUpdater updater = new Updater(objectSpace, versionFromDB);
         return new ModuleUpdater[] { updater };
     }
-    public override void Setup(XafApplication application) {
-        base.Setup(application);
-        application.CreateCustomObjectSpaceProvider += application_CreateCustomObjectSpaceProvider;
-    }
 
-    void application_CreateCustomObjectSpaceProvider(object sender, CreateCustomObjectSpaceProviderEventArgs e) {
-        XafApplication application = (XafApplication)sender;
+    static void InitTypeInfoSource(ITypesInfo typesInfo) {
         if (typeInfoSource1 == null) {
             lock (lockObj) {
                 if (typeInfoSource1 == null) {
-                    typeInfoSource1 = new XpoTypeInfoSource((TypesInfo)application.TypesInfo,
+                    typeInfoSource1 = new XpoTypeInfoSource((TypesInfo)typesInfo,
                         typeof(PersistentClass1)
                     );
                 }
             }
         }
-        string connectionString = configuration != null
-            ? configuration.GetConnectionString(ConnectionStringName)
-            : ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
-        IObjectSpaceProvider objectSpaceProvider1 = new SecuredObjectSpaceProvider(
-            (SecurityStrategyComplex)application.Security,
+    }
+
+    public static void SetupObjectSpace<TContext>(IObjectSpaceProviderServiceBasedBuilder<TContext> builder, IConfiguration configuration)
+        where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
+        builder.Add(delegate (IServiceProvider serviceProvider) {
+            string connectionString = configuration.GetConnectionString(ConnectionStringName);
+            ISelectDataSecurityProvider selectDataSecurityProvider = (ISelectDataSecurityProvider)serviceProvider.GetRequiredService<ISecurityStrategyBase>();
+            ITypesInfo typesInfo = serviceProvider.GetRequiredService<ITypesInfo>();
+            return CreateObjectSpaceProvider(selectDataSecurityProvider, typesInfo, connectionString);
+        });
+    }
+
+    public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> builder) where TContext : IXafApplicationBuilder<TContext> {
+        builder.Add(delegate (XafApplication application, CreateCustomObjectSpaceProviderEventArgs _) {
+            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+            return CreateObjectSpaceProvider((ISelectDataSecurityProvider)application.Security, application.TypesInfo, connectionString);
+        });
+    }
+
+    static IObjectSpaceProvider CreateObjectSpaceProvider(ISelectDataSecurityProvider selectDataSecurityProvider, ITypesInfo typesInfo, string connectionString) {
+        InitTypeInfoSource(typesInfo);
+        var objectSpaceProvider = new SecuredObjectSpaceProvider(
+            selectDataSecurityProvider,
             new ConnectionStringDataStoreProvider(connectionString),
-            application.TypesInfo,
-            typeInfoSource1, true
+            typesInfo,
+            typeInfoSource1,
+            true
         );
-        objectSpaceProvider1.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
-        e.ObjectSpaceProviders.Add(objectSpaceProvider1);
+        objectSpaceProvider.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
+        return objectSpaceProvider;
     }
 }
 
