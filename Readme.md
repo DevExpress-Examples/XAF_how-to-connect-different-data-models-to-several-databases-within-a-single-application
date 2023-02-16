@@ -90,7 +90,7 @@ Usually, the connection to the database is set up in the executable [applicatio
 * [Startup.cs](./CS/EFCore/TwoModelsForDifferentDatabases.Blazor.Server/Startup.cs)
 * [appsettings.json](./CS/EFCore/TwoModelsForDifferentDatabases.Blazor.Server/appsettings.json)
 
-## WinForms application:
+### WinForms application:
 
 * [Startup.cs](./CS/EFCore/TwoModelsForDifferentDatabases.Win/Startup.cs)
 * [appsettings.json](./CS/EFCore/TwoModelsForDifferentDatabases.Win/App.config)
