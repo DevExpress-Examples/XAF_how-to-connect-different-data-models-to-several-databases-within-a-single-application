@@ -10,7 +10,9 @@ This example demonstrates how to create custom XAF modules with custom business 
 Usually, the connection to the database is set up in the executable [application project](http://documentation.devexpress.com/#Xaf/CustomDocument2569). Typically, it is performed in the configuration file or directly in the code of the application's designer or within the Main function/Global application class. To learn more, please check out this help topic: [Connect an XAF Application to a Database Provider](http://documentation.devexpress.com/#Xaf/CustomDocument3155) In this example, you will learn how to establish a connection to the database directly from your module projects.
 
 > **Note** 
-> This Readme focuses on Entity Framework Core. For information on how to achieve the same functionality with XPO, see the **Readme.md** file in the [XPO solution's folder](./CS/XPO/).
+> This Readme focuses on Entity Framework Core. For information on how to achieve the same functionality with XPO on .NET 6+ and .NET Framework, see the **Readme.md** files in the respective solution folders:
+> - [.NET 6+](./CS/XPO/.NET)
+> - [.NET Framewok](./CS/XPO/.NetFramework)
 
 ## Implementation Details
 
@@ -98,3 +100,4 @@ Usually, the connection to the database is set up in the executable [applicatio
 ## Documentation
 
 * [Business Model Design with Entity Framework Core](https://docs.devexpress.com/eXpressAppFramework/401886/business-model-design-orm/business-model-design-with-entity-framework-core)
+
