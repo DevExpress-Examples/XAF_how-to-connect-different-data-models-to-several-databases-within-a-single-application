@@ -16,17 +16,69 @@ Usually, the connection to the database is set up in the executable [applicatio
 
 ## Implementation Details
 
-**1.** Add two new custom XAF modules into a new XAF solution using the XAF Solution Wizard [as described here](https://docs.devexpress.com/eXpressAppFramework/118046/application-shell-and-base-infrastructure/application-solution-components/modules).
+**1.** In the configuration files for the Blazor and WinForms projects, define three separate connection strings: one connection string for a database that stores security data and two additional connection strings for separate databases used to store application data.
 
-**2.** For each new module, implement its own DbContext and persistent classes as shown in example solution's _ClassLibraryN/ClassLibraryNDbContext.cs_ and _ClassLibraryN/PersistentClassN.cs_ files.
+**2.** Configure the main module's DbContext to store data used by the Security System (users, roles and login information).
 
-**3.** Add static methods that configure the ObjectSpace and DbContexts (`SetupObjectSpace()` and `SetupDbContext()`) to all module classes in the solution:
+  ```cs
+  public class CommonModuleEFCoreDbContext : DbContext {
+    // ...
+    public DbSet<PermissionPolicyRole> Roles { get; set; }
+    public DbSet<ApplicationUser> Users { get; set; }
+    public DbSet<ApplicationUserLoginInfo> UserLoginInfos { get; set; }
+    // ...
+  }
+  ```
+
+  In the platform-specific projects, edit the _startup.cs_ files to configure the Security System so that it uses the main module's persistent classes to store security-related data:
+
+  **ASP.NET Core Blazor:**
+
+  ```cs
+  public class Startup {
+      // ...
+      public void ConfigureServices(IServiceCollection services) {
+          services.AddXaf(Configuration, builder => {
+              builder.Security
+                  .UseIntegratedMode(options => {
+                      options.RoleType = typeof(PermissionPolicyRole);
+                      options.UserType = typeof(CommonModule.BusinessObjects.ApplicationUser);
+                      options.UserLoginInfoType = typeof(CommonModule.BusinessObjects.ApplicationUserLoginInfo);
+                  })
+              // ...
+          });
+      }
+  }
+  ```
+
+  **Windows Forms:**
+
+  ```cs
+  public class ApplicationBuilder : IDesignTimeApplicationFactory {
+      public static WinApplication BuildApplication(string connectionString) {
+          var builder = WinApplication.CreateBuilder();
+          // ...
+          builder.Security
+              .UseIntegratedMode(options => {
+                  options.RoleType = typeof(PermissionPolicyRole);
+                  options.UserType = typeof(CommonModule.BusinessObjects.ApplicationUser);
+                  options.UserLoginInfoType = typeof(CommonModule.BusinessObjects.ApplicationUserLoginInfo);
+              })
+          // ...
+  }
+  ```
+
+**3.** Add two new custom XAF modules into a new XAF solution using the XAF Solution Wizard [as described here](https://docs.devexpress.com/eXpressAppFramework/118046/application-shell-and-base-infrastructure/application-solution-components/modules).
+
+**4.** For each new module, implement its own DbContext and persistent classes as shown in example solution's _ClassLibraryN/ClassLibraryNDbContext.cs_ and _ClassLibraryN/PersistentClassN.cs_ files.
+
+**5.** Add static methods that configure the ObjectSpace and DbContexts (`SetupObjectSpace()` and `SetupDbContext()`) to all module classes in the solution:
 
 - _ClassLibrary1/XafModule1.cs_
 - _ClassLibrary2/XafModule2.cs_
 - _CommonModule/Module.cs_
 
-**4.** Make the following edits to the _Startup.cs_ files for the Blazor and WinForms projects:
+**6.** Make the following edits to the _Startup.cs_ files for the Blazor and WinForms projects:
 
 - Register the modules as shown in the code sample below:
 
@@ -45,7 +97,7 @@ Usually, the connection to the database is set up in the executable [applicatio
 
 - Call the `SetupObjectSpace()` static methods for the ClassLibrary1 and ClassLibrary2 modules. Blazor and WinForms require different overloads of this method:
 
-  **Blazor:**
+  **ASP.NET Core Blazor:**
 
   ```cs
   public void ConfigureServices(IServiceCollection services) {
@@ -59,7 +111,7 @@ Usually, the connection to the database is set up in the executable [applicatio
   }
   ```
 
-  **WinForms:**
+  **Windows Forms:**
 
   ```cs
   public void ConfigureServices(IServiceCollection services) {
@@ -72,8 +124,6 @@ Usually, the connection to the database is set up in the executable [applicatio
       }
   }
   ```
-
-**5.** In the configuration files for the Blazor and WinForms projects define separate connection strings used by the modules.
 
 ## Files to Review
 
@@ -95,7 +145,7 @@ Usually, the connection to the database is set up in the executable [applicatio
 ### WinForms application:
 
 * [Startup.cs](./CS/EFCore/TwoModelsForDifferentDatabases.Win/Startup.cs)
-* [appsettings.json](./CS/EFCore/TwoModelsForDifferentDatabases.Win/App.config)
+* [App.config](./CS/EFCore/TwoModelsForDifferentDatabases.Win/App.config)
 
 ## Documentation
 
