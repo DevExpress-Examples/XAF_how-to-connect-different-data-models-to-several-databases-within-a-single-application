@@ -7,7 +7,7 @@ Usually, the connection to the database is set up in the executable [applicatio
 
 **1.** In the configuration files for the Blazor and WinForms projects, define three separate connection strings: one connection string for a database that stores security data and two additional connection strings for separate databases used to store application data.
 
-**2.** Implements persistent classes required to store security-related data to the main module (see the files in the example project's _[CommonModule/BusinessObjects](./CommonModule/BusinessObjects/)_ folder).
+**2.** Implement persistent classes required to store security-related data to the main module (see the files in the example project's _[CommonModule/BusinessObjects](./CommonModule/BusinessObjects/)_ folder).
 
 In the platform-specific projects, edit the _startup.cs_ files to configure the Security System so that it uses the main module's persistent classes to store security-related data:
 
