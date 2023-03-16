@@ -9,7 +9,7 @@ Usually, the connection to the database is set up in the executable [applicatio
 
 **2.** Implement persistent classes required to store security-related data to the main module (see the files in the example project's _[CommonModule/BusinessObjects](./CommonModule/BusinessObjects/)_ folder).
 
-In the platform-specific projects, edit the _startup.cs_ files to configure the Security System so that it uses the main module's persistent classes to store security-related data:
+In the platform-specific projects, edit the _Startup.cs_ files to configure the Security System so that it uses the main module's persistent classes to store security-related data:
 
   **ASP.NET Core Blazor:**
 
