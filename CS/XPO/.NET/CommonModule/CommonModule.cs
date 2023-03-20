@@ -73,27 +73,29 @@ public sealed class CommonModule : ModuleBase {
     }
 
     public static void SetupObjectSpace<TContext>(IObjectSpaceProviderServiceBasedBuilder<TContext> builder, IConfiguration configuration)
-        where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
+    where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
+        string connectionString = configuration.GetConnectionString(ConnectionStringName);
+        var dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, null, true);
         builder.Add(delegate (IServiceProvider serviceProvider) {
-            string connectionString = configuration.GetConnectionString(ConnectionStringName);
             ISelectDataSecurityProvider selectDataSecurityProvider = (ISelectDataSecurityProvider)serviceProvider.GetRequiredService<ISecurityStrategyBase>();
             ITypesInfo typesInfo = serviceProvider.GetRequiredService<ITypesInfo>();
-            return CreateObjectSpaceProvider(selectDataSecurityProvider, typesInfo, connectionString);
+            return CreateObjectSpaceProvider(selectDataSecurityProvider, typesInfo, dataStoreProvider);
         });
     }
 
     public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> builder) where TContext : IXafApplicationBuilder<TContext> {
+        string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+        var dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, null, false);
         builder.Add(delegate (XafApplication application, CreateCustomObjectSpaceProviderEventArgs _) {
-            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
-            return CreateObjectSpaceProvider((ISelectDataSecurityProvider)application.Security, application.TypesInfo, connectionString);
+            return CreateObjectSpaceProvider((ISelectDataSecurityProvider)application.Security, application.TypesInfo, dataStoreProvider);
         });
     }
 
-    static IObjectSpaceProvider CreateObjectSpaceProvider(ISelectDataSecurityProvider selectDataSecurityProvider, ITypesInfo typesInfo, string connectionString) {
+    static IObjectSpaceProvider CreateObjectSpaceProvider(ISelectDataSecurityProvider selectDataSecurityProvider, ITypesInfo typesInfo, IXpoDataStoreProvider xpoDataStoreProvider) {
         InitTypeInfoSource(typesInfo);
         var objectSpaceProvider = new SecuredObjectSpaceProvider(
             selectDataSecurityProvider,
-            new ConnectionStringDataStoreProvider(connectionString),
+            xpoDataStoreProvider,
             typesInfo,
             typeInfoSource,
             true
