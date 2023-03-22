@@ -6,7 +6,7 @@
 
 # How to connect different data models to several databases within a single application with Entity Framework Core
 
-This example demonstrates how to create custom XAF modules with custom business objects and logic that would work with separate databases. These modules do not depend on each other and thus can be reused in other applications as a whole.  
+This example demonstrates how to create custom XAF modules with custom business objects and logic that work with separate databases. These modules do not depend on each other and thus can be reused in other applications independently.  
 
 The [EFCore](./CS/EFCore/) example solution illustrates the following documentation article: [How to: Use Multiple Data Models Connected to Different Databases in Entity Framework Core](https://docs.devexpress.com/eXpressAppFramework/404322).
 
