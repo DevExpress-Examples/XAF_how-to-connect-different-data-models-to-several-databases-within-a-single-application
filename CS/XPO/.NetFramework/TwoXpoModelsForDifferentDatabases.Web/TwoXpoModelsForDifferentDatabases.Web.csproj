@@ -53,73 +53,73 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v22.2.Core">
+    <Reference Include="DevExpress.Pdf.v23.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.2.Export">
+    <Reference Include="DevExpress.RichEdit.v23.1.Export">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v22.2.Core">
+    <Reference Include="DevExpress.Printing.v23.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Drawing.v22.2">
+    <Reference Include="DevExpress.Drawing.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v22.2">
+    <Reference Include="DevExpress.Data.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Images.v22.2">
+    <Reference Include="DevExpress.Images.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v22.2">
+    <Reference Include="DevExpress.ExpressApp.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Web.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Web.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Validation.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v22.2">
+    <Reference Include="DevExpress.Persistent.Base.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v22.2">
+    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.2">
+    <Reference Include="DevExpress.Data.Desktop.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Utils.v22.2">
+    <Reference Include="DevExpress.Utils.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v22.2">
+    <Reference Include="DevExpress.Web.ASPxThemes.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxGantt.v22.2">
+    <Reference Include="DevExpress.Web.ASPxGantt.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxTreeList.v22.2">
+    <Reference Include="DevExpress.Web.ASPxTreeList.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Office.v22.2.Core">
+    <Reference Include="DevExpress.Office.v23.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.2.Core">
+    <Reference Include="DevExpress.RichEdit.v23.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.v22.2">
+    <Reference Include="DevExpress.Web.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v22.2">
+    <Reference Include="DevExpress.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Security.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System">

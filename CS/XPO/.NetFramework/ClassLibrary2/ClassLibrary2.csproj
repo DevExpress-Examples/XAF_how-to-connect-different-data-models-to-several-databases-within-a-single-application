@@ -31,31 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Drawing.v22.2">
+    <Reference Include="DevExpress.Drawing.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v22.2.Core">
+    <Reference Include="DevExpress.Printing.v23.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v22.2">
+    <Reference Include="DevExpress.Data.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v22.2">
+    <Reference Include="DevExpress.ExpressApp.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v22.2">
+    <Reference Include="DevExpress.Persistent.Base.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Security.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v22.2">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v22.2">
+    <Reference Include="DevExpress.Xpo.v23.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
