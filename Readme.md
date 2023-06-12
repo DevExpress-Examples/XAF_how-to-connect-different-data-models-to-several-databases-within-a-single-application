@@ -12,7 +12,9 @@ This [EFCore](./CS/EFCore/) example solution is based on the following tutorial:
 
 > **Note** 
 > For information on how to achieve the same functionality with XPO on .NET 6+ and .NET Framework, see the **Readme.md** files in the respective solution folders:
+>
 > [.NET 6+](https://github.com/DevExpress-Examples/XAF_how-to-connect-different-data-models-to-several-databases-within-a-single-application/tree/23.1.2%2B/CS/XPO/.NET) 
+>
 > [.NET Framework](https://github.com/DevExpress-Examples/XAF_how-to-connect-different-data-models-to-several-databases-within-a-single-application/tree/23.1.2%2B/CS/XPO/.NetFramework) 
 
 ## Files to Review
