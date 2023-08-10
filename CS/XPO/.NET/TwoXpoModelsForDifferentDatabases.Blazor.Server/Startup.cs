@@ -40,9 +40,12 @@ public class Startup {
                 .Add<ClassLibrary2.XafModule2>()
                 .Add<TwoXpoModelsForDifferentDatabasesBlazorModule>();
             builder.ObjectSpaceProviders.AddNonPersistent();
-            CommonModule.CommonModule.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
-            ClassLibrary1.XafModule1.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
-            ClassLibrary2.XafModule2.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
+            if (!ModuleHelper.IsDesignMode) {
+                CommonModule.CommonModule.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
+
+                ClassLibrary1.XafModule1.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
+                ClassLibrary2.XafModule2.SetupObjectSpace(builder.ObjectSpaceProviders, Configuration);
+            }
             builder.Security
                 .UseIntegratedMode(options => {
                     options.RoleType = typeof(PermissionPolicyRole);
