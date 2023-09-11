@@ -9,6 +9,7 @@ using DevExpress.ExpressApp.Xpo;
 using TwoXpoModelsForDifferentDatabases.Blazor.Server.Services;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.ExpressApp.Core;
+using DevExpress.ExpressApp;
 
 namespace TwoXpoModelsForDifferentDatabases.Blazor.Server;
 
