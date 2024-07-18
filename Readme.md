@@ -11,6 +11,8 @@ This example demonstrates how to create custom XAF modules with custom business 
 
 This [EFCore](./CS/EFCore/) example solution is based on the following tutorial: [How to: Use Multiple Data Models Connected to Different Databases in Entity Framework Core](https://docs.devexpress.com/eXpressAppFramework/404322).
 
+Note that business classes linked to different `ObjectSpaceProviders` are considered to be isolated from each other and thus cannot have direct links between them, e.g., an association between two classes. Consider using the [How to prevent altering the legacy database schema when creating an XAF application](https://github.com/DevExpress-Examples/xaf-how-to-prevent-altering-the-legacy-database-schema-when-creating-an-xaf-application) or alternative solutions if you need interlinks between classes from different data stores.
+
 > **Note** 
 > For information on how to achieve the same functionality with XPO on .NET 6+ and .NET Framework, see the **Readme.md** files in the respective solution folders:
 >
