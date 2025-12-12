@@ -45,7 +45,7 @@ public sealed class CommonModule : ModuleBase {
 
     public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> objectSpaceProviderBuilder)
             where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
-        string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName]?.ConnectionString;
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionStringName]?.ConnectionString;
         objectSpaceProviderBuilder.AddSecuredEFCore()
             .WithDbContext<CommonModuleEFCoreDbContext>((application, options) => SetupDbContext(options, connectionString));
     }

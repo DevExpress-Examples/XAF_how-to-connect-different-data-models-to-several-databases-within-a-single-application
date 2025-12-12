@@ -21,7 +21,7 @@ namespace ClassLibrary2 {
 
         public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> objectSpaceProviderBuilder)
             where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
-            string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName]?.ConnectionString;
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionStringName]?.ConnectionString;
             objectSpaceProviderBuilder.AddSecuredEFCore()
                 .WithDbContext<ClassLibrary2EFCoreDbContext>((application, options) => SetupDbContext(options, connectionString));
         }
