@@ -84,7 +84,7 @@ public sealed class CommonModule : ModuleBase {
 
     public static void SetupObjectSpace<TContext>(IObjectSpaceProviderBuilder<TContext> builder) 
     where TContext : IXafApplicationBuilder<TContext>, IAccessor<IServiceCollection> {
-        string connectionString = ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
+        string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionStringName].ConnectionString;
         var dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, null, false);
         builder.Add(delegate (XafApplication application, CreateCustomObjectSpaceProviderEventArgs _) {
             return CreateObjectSpaceProvider((ISelectDataSecurityProvider)application.Security, application.TypesInfo, dataStoreProvider);
