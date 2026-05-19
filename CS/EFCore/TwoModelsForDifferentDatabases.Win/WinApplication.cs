@@ -20,7 +20,6 @@ public class TwoModelsForDifferentDatabasesWindowsFormsApplication : WinApplicat
 		SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
         ApplicationName = "TwoModelsForDifferentDatabases";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-        UseOldTemplates = false;
         DatabaseVersionMismatch += TwoModelsForDifferentDatabasesWindowsFormsApplication_DatabaseVersionMismatch;
         CustomizeLanguagesList += TwoModelsForDifferentDatabasesWindowsFormsApplication_CustomizeLanguagesList;
     }
