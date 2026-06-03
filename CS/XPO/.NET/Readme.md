@@ -127,4 +127,4 @@ In the platform-specific projects, edit the _Startup.cs_ files to configure the 
 ## More Examples
 
 - [How to prevent altering the legacy database schema when creating an XAF application](https://github.com/DevExpress-Examples/XAF_how-to-prevent-altering-the-legacy-database-schema-when-creating-an-xaf-application-e1150)
-- [Creating and consuming multiple XPObjectSpaceProviders in Web API Service](https://supportcenter.devexpress.com/internal/ticket/details/T1122851)
+- [Creating and consuming multiple XPObjectSpaceProviders in Web API Service](https://supportcenter.devexpress.com/ticket/details/t1122851/creating-and-consuming-multiple-xpobjectspaceproviders-in-web-api-service)
